@@ -1,0 +1,36 @@
+{
+  "trained_at": "2026-09-22T06:11:46.982745+00:00",
+  "dataset": "ml/data/fairtrip_prices.csv (DEMO/PROTOTYPE \u2014 synthetic)",
+  "n_train_rows": 3200,
+  "n_test_rows": 800,
+  "mae": 31.98,
+  "rmse": 49.55,
+  "r2": 0.9662,
+  "residual_std": 49.54,
+  "features": [
+    "city",
+    "service_type",
+    "vehicle_type",
+    "distance_km",
+    "hour",
+    "day_of_week",
+    "month"
+  ],
+  "model": "RandomForestRegressor(n_estimators=300, min_samples_leaf=2, random_state=42)",
+  "coverage_counts": {
+    "Bengaluru::Auto": 288,
+    "Bengaluru::Taxi": 291,
+    "Delhi::Auto": 276,
+    "Delhi::Taxi": 273,
+    "Goa::Auto": 278,
+    "Goa::Taxi": 291,
+    "Jaipur::Auto": 296,
+    "Jaipur::Taxi": 273,
+    "Mumbai::Auto": 280,
+    "Mumbai::Taxi": 290,
+    "Nagpur::Auto": 294,
+    "Nagpur::Taxi": 307,
+    "Pune::Auto": 299,
+    "Pune::Taxi": 264
+  }
+}

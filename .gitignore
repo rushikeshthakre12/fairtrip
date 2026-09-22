@@ -1,0 +1,23 @@
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+dist/
+frontend/dist/
+
+# ML artifacts (regeneratable via training script)
+ml/models/*.pkl
+
+# OS
+.DS_Store
+
+# Environment variables
+.env

@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.input {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #252C28;
+  background: #171C19;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+  color: #F3F7F4;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input::placeholder {
+  color: #66716B;
+}
+.input:focus {
+  border-color: #39FF88;
+  box-shadow: 0 0 0 3px rgba(57,255,136,0.15);
+  outline: none;
+}
+.input option {
+  background: #171C19;
+  color: #F3F7F4;
+}
+
+/* Meter tick marker used on the comparison bar (signature element) */
+.meter-track {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(243, 247, 244, 0.12),
+    rgba(243, 247, 244, 0.12) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+:focus-visible {
+  outline: 2px solid #39FF88;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* When printing the Result page, show only the Fare Receipt ticket stub */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #fare-receipt, #fare-receipt * {
+    visibility: visible;
+  }
+  #fare-receipt {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
