@@ -47,7 +47,7 @@ FairTrip analyzes the trip and compares the quoted price against the model's est
 | 🤝 **Community Reports**    | Submit real-world fares for validation               |
 | 🧠 **Explainable ML**       | Understand how the estimate is generated             |
 | 📊 **Model Transparency**   | View actual model evaluation metrics                 |
-| 🛡️ **Validation Workflow** | Review community submissions before training         |
+| 🛡️ **Validation Workflow**  | Review community submissions before training         |
 
 ### Currently Supported
 
@@ -125,8 +125,8 @@ Users must verify extracted information before it is used for analysis.
               ┌──────────┼──────────┐
               ▼          ▼          ▼
         ┌──────────┐ ┌────────┐ ┌──────────┐
-        │PostgreSQL│ │   ML   │ │  Tesseract│
-        │ Database │ │ Model  │ │    OCR   │
+        │PostgreSQL│ │   ML   │ │ Tesseract│
+        │ Database │ │ Model  │ │   OCR    │
         └──────────┘ └────────┘ └──────────┘
 ```
 
