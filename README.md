@@ -40,14 +40,14 @@ FairTrip analyzes the trip and compares the quoted price against the model's est
 
 ## ✨ Features
 
-| Feature                     | Description                                          |
-| --------------------------- | ---------------------------------------------------- |
-| 💰 **Fair Price Checker**   | Estimate a typical local transportation price        |
-| 📷 **Scan & Check**         | Extract price and service from screenshots using OCR |
-| 🤝 **Community Reports**    | Submit real-world fares for validation               |
-| 🧠 **Explainable ML**       | Understand how the estimate is generated             |
-| 📊 **Model Transparency**   | View actual model evaluation metrics                 |
-| 🛡️ **Validation Workflow**  | Review community submissions before training         |
+| Feature                      | Description                                          |
+| ---------------------------  | ---------------------------------------------------- |
+| 💰 **Fair Price Checker**    | Estimate a typical local transportation price        |
+| 📷 **Scan & Check**          | Extract price and service from screenshots using OCR |
+| 🤝 **Community Reports**     | Submit real-world fares for validation               |
+| 🧠 **Explainable ML**        | Understand how the estimate is generated             |
+| 📊 **Model Transparency**    | View actual model evaluation metrics                 |
+| 🛡️ **Validation Workflow**   | Review community submissions before training         |
 
 ### Currently Supported
 
