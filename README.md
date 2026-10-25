@@ -1,160 +1,296 @@
-# FairTrip
+# ✈️ FairTrip
+### AI-Powered Fair Price Intelligence for Travelers
 
-**AI-Powered Fair Price Intelligence for Travelers**
-*"Know the Price. Travel with Confidence."*
+**Know the Price. Travel with Confidence.**
 
-## The Problem
+FairTrip helps travelers understand whether a local transport quote is typical for a journey. It combines machine learning, OCR, community-reported fares, and explainable price comparisons to support better travel decisions.
 
-A tourist arrives in an unfamiliar city and gets a price quote from a local
-transport provider. They have no way to know what's typical, whether time or
-location affects the price, or what other travelers have paid.
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Prototype-16a34a?style=for-the-badge" alt="Prototype Status" />
+  <img src="https://img.shields.io/badge/Python-FastAPI-0f766e?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/Frontend-React-149eca?style=for-the-badge&logo=react&logoColor=white" alt="React" />
+  <img src="https://img.shields.io/badge/Machine_Learning-scikit--learn-f7931e?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="scikit-learn" />
+</p>
 
+---
+
+## 🌍 The Problem
+
+Traveling in an unfamiliar city can make it difficult to judge a local transport quote.
+
+- 💸 Is the quoted fare typical for this journey?
+- 📍 Does the city, distance, or time affect the expected price?
+- 🤝 What have other travelers paid for similar trips?
+
+**Information Asymmetry → Price Uncertainty → Poor Travel Decisions**
+
+## 💡 The Solution
+
+FairTrip estimates a typical price range for a trip and compares the traveler's quoted price against that range.
+
+Instead of simply returning a number, it explains where the quote falls and provides context to help the traveler make an informed decision.
+
+> **FairTrip is a decision-support tool, not a fare authority.** It does not book rides, detect fraud, or determine the legally correct price.
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|---|---|
+| 💰 **Fair Price Checker** | Estimate a typical fare using trip details and a trained ML model. |
+| 📸 **Scan & Check** | Extract prices from rate cards or quotations using OCR, with user verification before analysis. |
+| 🌐 **Community Reports** | Submit fares paid by travelers for review and validation. |
+| 📊 **Model Transparency** | Explore model evaluation metrics and understand the limitations of predictions. |
+| 🛡️ **Admin Validation Queue** | Review community submissions before accepting them. |
+| 🤖 **AI Trip Assistant** | Generate explanations in English or Marathi and suggest a driver negotiation line. |
+| ✍️ **CBOW Word Suggestions** | Demonstrate next-word suggestions using a lightweight neural language model. |
+| 🎬 **Animated Experience** | Explore an animated night-ride interface with an analyzing overlay and animated results. |
+
+## 🗺️ Coverage
+
+- **Transport services:** Taxi and Auto/Rickshaw
+- **Cities:** 15 Indian cities
+- **Mapped places:** 224 places for auto-distance support
+
+Mumbai · Delhi · Bengaluru · Pune · Nagpur · Jaipur · Goa · Hyderabad · Chennai · Kolkata · Ahmedabad · Kochi · Lucknow · Chandigarh · Udaipur
+
+Additional cities and services are architecturally anticipated, but require appropriate data and implementation before support can be claimed.
+
+---
+
+## 🧠 How FairTrip Works
+
+```text
+       TRIP DETAILS
+            │
+            ▼
+    REACT + TAILWIND UI
+            │
+            ▼
+      FASTAPI BACKEND
+            │
+            ▼
+    FEATURE ENGINEERING
+            │
+            ▼
+   RANDOM FOREST MODEL
+            │
+            ▼
+    ESTIMATED PRICE RANGE
+            │
+            ▼
+   QUOTE COMPARISON + REASONING
+            │
+            ▼
+      INFORMED DECISION
 ```
-Information Asymmetry → Price Uncertainty → Poor Travel Decision
-```
 
-## The Solution
+### 🤖 Generative AI
 
-FairTrip estimates a **typical local price range** for a trip using a trained
-machine learning model, and shows travelers exactly where their quote falls
-relative to that range — with the reasoning made visible.
+The AI Trip Assistant uses **Llama 3.3 70B through Groq**, when configured, or an offline template fallback. It can explain the estimate in English or Marathi and provide a suggested negotiation line.
 
-**FairTrip is:** a decision-support tool · a price-intelligence platform · an
-explainable ML system · a community-powered system.
+The Community Reports interface includes CBOW-based next-word suggestions.
 
-**FairTrip is not:** a booking platform · a fraud detector · a system that
-knows the legally correct price.
+See [`docs/GENAI.md`](docs/GENAI.md) for implementation details.
 
-## Features
+---
 
-- **Fair Price Checker** — enter trip details, get an instant estimate
-- **Scan & Check** — OCR-based extraction from rate cards/quotations (with mandatory user verification before analysis)
-- **Community Reports** — submit real fares paid, subject to a validation workflow before they influence training data
-- **Model Transparency page** — real evaluation metrics, not invented numbers
-- **Admin/Validation queue** — approve or reject community submissions
+## 🏗️ Technology Stack
 
-Currently supported services: **Taxi**, **Auto/Rickshaw**, across **15 Indian
-cities** (Mumbai, Delhi, Bengaluru, Pune, Nagpur, Jaipur, Goa, Hyderabad, Chennai, Kolkata, Ahmedabad, Kochi, Lucknow, Chandigarh, Udaipur) with **224 mapped places** for auto-distance. See
-[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for how additional services/cities
-extend the same schema.
-
-## GenAI features
-
-The Result page has an **AI Trip Assistant** (explanation in English/Marathi and a driver negotiation line, via Llama 3.3 70B on Groq or an offline template). Community Reports has **CBOW next-word suggestions**. See [docs/GENAI.md](docs/GENAI.md) for the models and how they work, and [docs/RUN_IN_VSCODE.md](docs/RUN_IN_VSCODE.md) for a from-scratch VS Code guide.
-
-## Presenting it
-
-See [docs/PRESENTATION_GUIDE.md](docs/PRESENTATION_GUIDE.md) for the demo script, ML/GenAI workflow and likely viva questions. The Fair Price Checker has one-click **demo scenarios**.
-
-## Animated Frontend
-
-The app runs over a live, Full HD **"Night ride" animated background** (seamless 20-second loop:
-skyline, taxis, ticking fare-meter chips, pickup → drop route), plus scroll-reveal, count-up
-stats, animated result screens and an "analyzing" overlay. Pause it with the ⏸ button in the
-navbar. The same scene can be exported as a 1080p MP4 — see
-[docs/FRONTEND_ANIMATION.md](docs/FRONTEND_ANIMATION.md).
-
-## Architecture
-
-```
-frontend/   React + Vite + Tailwind — forms, results, no pricing logic
-backend/    FastAPI — validation, feature building, DB, orchestration
-ml/         scikit-learn training pipeline + persisted model artifacts
-docs/       Architecture, ML methodology, API reference, setup guide
-```
-
-Full data flow, component responsibilities, and the data-improvement loop are
-documented in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
-
-## Technology Stack
-
-| Layer | Tech |
+| Layer | Technologies |
 |---|---|
 | Frontend | React 18, Vite, Tailwind CSS, Axios, React Router |
 | Backend | FastAPI, Pydantic, SQLAlchemy, Uvicorn |
-| ML | scikit-learn (RandomForestRegressor), pandas, joblib |
+| Machine Learning | Python, scikit-learn, RandomForestRegressor, pandas, joblib |
 | Database | PostgreSQL |
-| OCR | Tesseract via pytesseract |
-| Infra | Docker Compose |
+| OCR | Tesseract, pytesseract |
+| Generative AI | Llama 3.3 70B via Groq, offline template fallback |
+| Language Modeling | CBOW next-word suggestions |
+| Infrastructure | Docker Compose |
+| Version Control | Git and GitHub |
 
-## ML Approach
+---
 
-A `RandomForestRegressor` trained on trip features (city, service type,
-vehicle type, distance, hour, day of week, month) predicts a typical price.
-The estimated range is **predicted price ± 1 relative residual standard deviation** (≈ ±10 %),
-measured on a held-out test split — not an arbitrary percentage. Full
-methodology: [docs/ML_MODEL.md](docs/ML_MODEL.md).
+## 📊 Machine Learning & Evaluation
 
-**Actual metrics from the last training run** (on the demo/prototype dataset,
-2,400 held-out test rows):
+FairTrip uses a **RandomForestRegressor** to estimate a typical fare from features such as city, service type, vehicle type, distance, hour, day of the week, and month.
 
-| Metric | Value |
+### Latest recorded evaluation
+
+The project README reports the following metrics from a held-out test set of 2,400 rows:
+
+| Metric | Reported Value |
+|---|---:|
+| Mean Absolute Error (MAE) | ₹52.64 |
+| Root Mean Squared Error (RMSE) | ₹79.09 |
+| R² Score | 0.972 |
+
+These are **prototype-dataset results**, not evidence of equivalent accuracy on real-world fares. Check [`ml/models/metrics.json`](ml/models/metrics.json) for the metrics generated by the latest training run.
+
+### 🧪 Dataset
+
+The current dataset contains **12,000 synthetic records**, generated deterministically using seed 42.
+
+It is intended for prototyping and demonstrating the pipeline. It must be evaluated against validated real-world fare observations before production use.
+
+### 📈 Price Range
+
+The current README describes the estimated range as the predicted price plus or minus one relative residual standard deviation, measured on a held-out split.
+
+This range should not be interpreted as a formally calibrated statistical confidence interval.
+
+---
+
+## 🧭 Example Demo
+
+| Input | Example |
 |---|---|
-| MAE | ₹52.64 |
-| RMSE | ₹79.09 |
-| R² | 0.972 |
+| City | Mumbai |
+| Service | Taxi |
+| Distance | 15 km |
+| Time | 8:30 PM |
+| Traveler's Quote | ₹900 |
 
-These numbers come from `ml/models/metrics.json`, generated by
-`ml/training/train_model.py` — they are not hardcoded into the app.
+The README's previously recorded example prediction was approximately ₹409, with an estimated range of ₹368–₹451. Under that example, the quote is classified as unusually high.
 
-## Dataset
+**Note:** These are previously recorded demonstration values. The actual output may differ after retraining or changes to the dataset and model.
 
-`ml/data/fairtrip_prices.csv` is a **synthetic, deterministic, prototype
-dataset** (12,000 rows, 15 cities, seed 42) — clearly labeled everywhere it surfaces in
-the UI. It should be replaced/augmented with validated real-world
-observations (via the community reporting + validation pipeline) before any
-production use. See [ml/data/README.md](ml/data/README.md).
+---
 
-## Installation & Running
+## 🖥️ Architecture
 
-See [docs/SETUP.md](docs/SETUP.md) for full instructions, including Docker
-Compose and manual setup. Quick version:
-
-```bash
-# 1. Database
-cp .env.example .env
-sudo -u postgres psql -c "CREATE USER fairtrip WITH PASSWORD 'fairtrip_dev_pw';"
-sudo -u postgres psql -c "CREATE DATABASE fairtrip OWNER fairtrip;"
-psql -h localhost -U fairtrip -d fairtrip -f backend/app/database/schema.sql
-
-# 2. Train the model
-cd ml/training && pip install -r ../../backend/requirements.txt && python train_model.py
-
-# 3. Backend
-cd ../../backend && uvicorn app.main:app --reload --port 8000
-
-# 4. Frontend
-cd ../frontend && npm install && npm run dev
+```text
+FairTrip/
+├── backend/       # FastAPI endpoints and business logic
+├── frontend/      # React + Vite + Tailwind UI
+├── ml/
+│   ├── data/      # Synthetic prototype dataset
+│   ├── models/    # Trained model and evaluation metrics
+│   └── training/  # Model training pipeline
+├── docs/          # Setup, architecture, ML and GenAI guides
+├── .env.example   # Example configuration (no real secrets)
+└── docker-compose.yml
 ```
 
-## API Documentation
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the detailed design and data flow.
 
-See [docs/API.md](docs/API.md), or the live Swagger UI at
-`http://localhost:8000/docs` once the backend is running.
+---
 
-## Demo Scenario
+## ⚙️ Getting Started
 
-City: Mumbai · Service: Taxi · Distance: 15 km · Time: 8:30 PM · Quote: ₹900
+### Prerequisites
 
-This flows through the real pipeline (frontend → FastAPI → feature builder →
-trained RandomForest → range calculation → status comparison) and returns
-whatever the actual model produces — it is never hardcoded. At last training,
-this scenario produced a predicted price around ₹409 with a range of roughly
-₹368–₹451, status `UNUSUALLY_HIGH`. Your numbers may differ slightly after
-retraining, since the dataset generator and model both retain some
-randomness in sampling — this is expected and intentional.
+- Python 3.11 recommended for the Docker-based setup
+- Node.js and npm
+- PostgreSQL, or a working Docker Compose setup
+- Tesseract OCR for image-based price extraction
 
-## Limitations
+### 1. Clone the repository
 
-- Dataset is synthetic/demo, not real-world collected fares (clearly labeled everywhere)
-- OCR accuracy depends on image quality; always requires user confirmation
-- Only Taxi and Auto are modeled; 15 cities are supported (landmark coordinates are approximate)
-- Confidence scoring is based on training-row counts, not a formal statistical confidence interval
-- No authentication/user accounts yet — community reports are anonymous in this prototype
+```bash
+git clone https://github.com/rushikeshthakre12/fairtrip.git
+cd fairtrip
+```
 
-## Future Scope
+### 2. Configure environment variables
 
-Hotels · Restaurants · Car Rentals · Guides · Activities · National/International
-expansion · Verified provider partnerships · Official rate card integrations.
-**None of these are implemented** — they are architecturally anticipated only
-(see `cities`/`services` tables and endpoints designed for extensibility).
+```bash
+cp .env.example .env
+```
+
+On Windows PowerShell, use:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Review `.env` and configure your local database and optional AI provider credentials. **Never commit `.env` or real API keys.**
+
+### 3. Set up the database
+
+Create the PostgreSQL database and user according to [`docs/SETUP.md`](docs/SETUP.md), then initialize the schema:
+
+```bash
+psql -h localhost -U fairtrip -d fairtrip -f backend/app/database/schema.sql
+```
+
+### 4. Train the model
+
+```bash
+cd ml/training
+pip install -r ../../backend/requirements.txt
+python train_model.py
+```
+
+### 5. Start the backend
+
+Open a terminal at the project root:
+
+```bash
+cd backend
+uvicorn app.main:app --reload --port 8000
+```
+
+API documentation: http://localhost:8000/docs
+
+### 6. Start the frontend
+
+Open another terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite, usually http://localhost:5173.
+
+For the complete setup, troubleshooting, and Docker instructions, see [`docs/SETUP.md`](docs/SETUP.md).
+
+---
+
+## 📚 Documentation
+
+| Guide | Description |
+|---|---|
+| [Architecture](docs/ARCHITECTURE.md) | System design and data flow |
+| [ML Model](docs/ML_MODEL.md) | Training methodology and evaluation |
+| [GenAI](docs/GENAI.md) | AI Trip Assistant and CBOW implementation |
+| [Setup Guide](docs/SETUP.md) | Installation and troubleshooting |
+| [API Reference](docs/API.md) | Backend endpoints |
+| [Presentation Guide](docs/PRESENTATION_GUIDE.md) | Demo script and viva preparation |
+| [VS Code Guide](docs/RUN_IN_VSCODE.md) | Step-by-step local execution |
+| [Frontend Animation](docs/FRONTEND_ANIMATION.md) | Animated background and video export |
+
+---
+
+## ⚠️ Limitations
+
+- Fare training data is synthetic, not a representative collection of actual fares.
+- OCR extraction depends on image quality and requires user verification.
+- Predictions may not reflect traffic, surge pricing, bargaining, tolls, local regulations, or driver-specific conditions.
+- Mapped landmark coordinates are approximate.
+- Confidence scoring based on training-row counts is not a formal uncertainty estimate.
+- Community reports require validation before they should influence model training.
+- The current prototype does not provide user accounts or a production-grade authentication system.
+
+## 🚀 Future Scope
+
+- Integrate validated real-world fare observations.
+- Improve model calibration and uncertainty estimates.
+- Expand transport services and geographic coverage.
+- Add verified provider and official rate-card integrations.
+- Improve accessibility, multilingual support, and community-report quality controls.
+
+These are proposed enhancements, not claims about implemented functionality.
+
+---
+
+## 🎓 Project Purpose
+
+FairTrip demonstrates how **machine learning, OCR, generative AI, backend APIs, database design, and frontend development** can work together in an explainable travel price-intelligence prototype.
+
+Built to help travelers make more informed decisions—one fare at a time.
+
+**FairTrip — Know the Price. Travel with Confidence.**
