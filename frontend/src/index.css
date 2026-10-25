@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.input {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #252C28;
+  background: #171C19;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+  color: #F3F7F4;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.input::placeholder {
+  color: #66716B;
+}
+.input:focus {
+  border-color: #39FF88;
+  box-shadow: 0 0 0 3px rgba(57,255,136,0.15);
+  outline: none;
+}
+.input option {
+  background: #171C19;
+  color: #F3F7F4;
+}
+
+/* Meter tick marker used on the comparison bar (signature element) */
+.meter-track {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(243, 247, 244, 0.12),
+    rgba(243, 247, 244, 0.12) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+:focus-visible {
+  outline: 2px solid #39FF88;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* When printing the Result page, show only the Fare Receipt ticket stub */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #fare-receipt, #fare-receipt * {
+    visibility: visible;
+  }
+  #fare-receipt {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* ===================================================================
+   Animated-UI layer (background scrim, page transitions, reveals)
+   =================================================================== */
+html, body { background: #050807; }
+
+/* keeps text readable over the moving scene */
+.bg-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 8, 7, 0.62) 0%,
+    rgba(5, 8, 7, 0.26) 38%,
+    rgba(5, 8, 7, 0.5) 100%
+  );
+}
+
+/* frosted surfaces over the animated canvas */
+.bg-ink-soft, .bg-ink-elevated {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.page-enter { animation: pageIn 0.45s ease both; }
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+
+.fade-up { animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both; animation-delay: var(--d, 0ms); }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+
+.fade-in { animation: fadeIn 0.8s ease both; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.pop-in { animation: popIn 0.55s cubic-bezier(0.2, 1.4, 0.4, 1) both; animation-delay: 0.35s; }
+@keyframes popIn { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: none; } }
+
+.drop-in { animation: dropIn 0.6s cubic-bezier(0.2, 1.2, 0.4, 1) both; }
+@keyframes dropIn { from { opacity: 0; transform: translateY(-22px); } to { opacity: 1; transform: none; } }
+
+.bar-grow {
+  transform-origin: left center;
+  animation: growX 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: 0.5s;
+}
+@keyframes growX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+.marker-pulse { animation: markerPulse 1.8s ease-in-out 2s infinite; }
+@keyframes markerPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.float-slow { animation: floatY 7s ease-in-out infinite; }
+@keyframes floatY { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+.pulse-glow { animation: pulseGlow 2.6s ease-out infinite; }
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(57, 255, 136, 0.45); }
+  70%, 100% { box-shadow: 0 0 0 16px rgba(57, 255, 136, 0); }
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg, #39ff88, #c9ffe0, #39ff88);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 4.5s linear infinite;
+}
+@keyframes shimmer { to { background-position: 200% center; } }
+
+.marquee { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+.needle { animation: needleSweep 1.6s ease-in-out infinite alternate; }
+@keyframes needleSweep { from { transform: rotate(-65deg); } to { transform: rotate(65deg); } }
+
+/* scroll-reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.reveal.in-view { opacity: 1; transform: none; }
+
+/* staggered entrance for a page's top-level blocks */
+.stagger > * { animation: fadeUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 90ms; }
+.stagger > *:nth-child(3) { animation-delay: 180ms; }
+.stagger > *:nth-child(4) { animation-delay: 270ms; }
+.stagger > *:nth-child(5) { animation-delay: 360ms; }
+.stagger > *:nth-child(6) { animation-delay: 450ms; }
+.stagger > *:nth-child(7) { animation-delay: 540ms; }
+.stagger > *:nth-child(8) { animation-delay: 630ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .marquee { animation: none; }
+}
+
+/* phones: a stronger scrim keeps text readable over the busy skyline */
+@media (max-width: 640px) {
+  .bg-scrim {
+    background: linear-gradient(180deg, rgba(5, 8, 7, 0.74) 0%, rgba(5, 8, 7, 0.55) 45%, rgba(5, 8, 7, 0.7) 100%);
+  }
+}

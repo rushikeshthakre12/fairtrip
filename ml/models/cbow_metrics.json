@@ -1,0 +1,16 @@
+{
+  "trained_at": "2026-10-25T06:52:51.488997+00:00",
+  "model": "CBOW (NumPy), context window 3, embedding dim 24",
+  "dataset": "DEMO/PROTOTYPE: small synthetic taxi/travel note corpus",
+  "corpus_sentences": 180,
+  "vocab_size": 94,
+  "train_examples": 1591,
+  "heldout_examples": 285,
+  "epochs": 1500,
+  "final_train_loss": 0.9674,
+  "heldout_perplexity": 3.35,
+  "heldout_top1_accuracy": 0.747,
+  "heldout_top3_accuracy": 0.853,
+  "baseline_most_common_word_top1": 0.137,
+  "split": "random 15% of sentences held out (optimistic: shared templates)"
+}

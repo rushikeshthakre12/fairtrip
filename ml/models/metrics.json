@@ -1,0 +1,59 @@
+{
+  "trained_at": "2026-10-25T06:54:38.758789+00:00",
+  "dataset": "ml/data/fairtrip_prices.csv (DEMO/PROTOTYPE \u2014 synthetic)",
+  "n_train_rows": 9600,
+  "n_test_rows": 2400,
+  "mae": 52.64,
+  "rmse": 79.09,
+  "r2": 0.9724,
+  "residual_std": 79.08,
+  "residual_rel_std": 0.1017,
+  "features": [
+    "city",
+    "service_type",
+    "vehicle_type",
+    "distance_km",
+    "hour",
+    "day_of_week",
+    "month"
+  ],
+  "feature_ranges": {
+    "distance_km": {
+      "min": 1.0,
+      "max": 79.99
+    }
+  },
+  "model": "RandomForestRegressor(n_estimators=300, min_samples_leaf=2, random_state=42)",
+  "coverage_counts": {
+    "Ahmedabad::Auto": 441,
+    "Ahmedabad::Taxi": 410,
+    "Bengaluru::Auto": 385,
+    "Bengaluru::Taxi": 387,
+    "Chandigarh::Auto": 382,
+    "Chandigarh::Taxi": 402,
+    "Chennai::Auto": 396,
+    "Chennai::Taxi": 384,
+    "Delhi::Auto": 416,
+    "Delhi::Taxi": 414,
+    "Goa::Auto": 413,
+    "Goa::Taxi": 384,
+    "Hyderabad::Auto": 393,
+    "Hyderabad::Taxi": 393,
+    "Jaipur::Auto": 404,
+    "Jaipur::Taxi": 405,
+    "Kochi::Auto": 395,
+    "Kochi::Taxi": 374,
+    "Kolkata::Auto": 378,
+    "Kolkata::Taxi": 400,
+    "Lucknow::Auto": 407,
+    "Lucknow::Taxi": 406,
+    "Mumbai::Auto": 416,
+    "Mumbai::Taxi": 431,
+    "Nagpur::Auto": 407,
+    "Nagpur::Taxi": 388,
+    "Pune::Auto": 388,
+    "Pune::Taxi": 404,
+    "Udaipur::Auto": 394,
+    "Udaipur::Taxi": 403
+  }
+}
