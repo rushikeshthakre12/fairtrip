@@ -124,3 +124,12 @@ export async function explainResult(payload) {
     throw new Error(friendlyError(error))
   }
 }
+
+export async function deleteReport(id) {
+  try {
+    const { data } = await api.delete(`/community-reports/${id}`)
+    return data
+  } catch (error) {
+    throw new Error(friendlyError(error))
+  }
+}

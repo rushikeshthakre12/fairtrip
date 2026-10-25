@@ -103,3 +103,15 @@ def validate_report(report_id: int, decision: str, db: Session = Depends(get_db)
             db.commit()
 
     return {"id": report.id, "status": report.status}
+
+
+@router.delete("/community-reports/{report_id}")
+def delete_report(report_id: int, db: Session = Depends(get_db)):
+    """Admin: permanently delete a report (and its training row, if it was validated)."""
+    report = db.query(PriceReport).filter(PriceReport.id == report_id).first()
+    if not report:
+        raise HTTPException(status_code=404, detail="Report not found")
+    db.query(ValidatedPrice).filter(ValidatedPrice.price_report_id == report_id).delete()
+    db.delete(report)
+    db.commit()
+    return {"id": report_id, "deleted": True}
